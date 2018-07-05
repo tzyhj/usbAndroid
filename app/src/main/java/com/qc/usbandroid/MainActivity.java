@@ -10,7 +10,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -20,7 +19,9 @@ import com.qc.usbandroid.databinding.ActivityMainBinding;
 import java.lang.ref.WeakReference;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+import utilslib.global.BaseActivity;
+
+public class MainActivity extends BaseActivity {
 
     private Context mContext;
     private ActivityMainBinding binding;
@@ -40,18 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
-            ctrl.mList.add("msg:"+ JSON.toJSONString(msg));
-            ctrl.mAdapter.notifyDataSetChanged();
+//            ctrl.mList.add("msg:"+ JSON.toJSONString(msg));
+//            ctrl.mAdapter.notifyDataSetChanged();
             switch (msg.what) {
 
                 case UsbService.MESSAGE_FROM_SERIAL_PORT:
                     String data = (String) msg.obj;
 //                    mActivity.get().display.append(data);
-                    ctrl.mList.add("data:"+ JSON.toJSONString(data));
+                    ctrl.mList.add("data:"+ data);
                     ctrl.mAdapter.notifyDataSetChanged();
                     mActivity.get().binding.display.append(data);
 
-                    Toast.makeText(mActivity.get(),"DATA"+data,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mActivity.get(),"DATA"+data,Toast.LENGTH_SHORT).show();
                     break;
                 case UsbService.CTS_CHANGE:
                     Toast.makeText(mActivity.get(), "CTS_CHANGE",Toast.LENGTH_LONG).show();
