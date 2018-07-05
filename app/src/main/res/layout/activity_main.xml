@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewCtrl"
-            type="com.qc.usb_test.MainCtrl"/>
+            type="com.qc.usbandroid.MainCtrl"/>
     </data>
 
     <LinearLayout
@@ -25,6 +25,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="write"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+            <TextView
+                android:id="@+id/display"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
