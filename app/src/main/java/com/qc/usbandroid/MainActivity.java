@@ -14,10 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.qc.usbandroid.databinding.ActivityMainBinding;
 
 import java.lang.ref.WeakReference;
 import java.util.Set;
+
+import utilslib.helper.JsonUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     /*
      * This handler will be passed to UsbService. Data received from serial port is displayed through this handler
      */
-    private static class MyHandler extends Handler {
+    private class MyHandler extends Handler {
         private final WeakReference<MainActivity> mActivity;
 
         public MyHandler(MainActivity activity) {
@@ -101,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 case UsbService.MESSAGE_FROM_SERIAL_PORT:
                     String data = (String) msg.obj;
 //                    mActivity.get().display.append(data);
-                    ctrl.mList.add("data:"+JSON)
+                    ctrl.mList.add("data:"+ JSON.toJSONString(data));
+                    ctrl.mAdapter.notifyDataSetChanged();
                      mActivity.get().binding.display.append(data);
 
                     Toast.makeText(mActivity.get(),"DATA"+data,Toast.LENGTH_SHORT).show();
