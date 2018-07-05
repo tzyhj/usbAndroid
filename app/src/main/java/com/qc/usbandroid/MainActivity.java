@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     /*
      * This handler will be passed to UsbService. Data received from serial port is displayed through this handler
      */
-    private static class MyHandler extends Handler {
+    private  class MyHandler extends Handler {
         private final WeakReference<MainActivity> mActivity;
 
         public MyHandler(MainActivity activity) {
@@ -40,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
-//            ctrl.mList.add("msg:"+ JSON.toJSONString(msg));
-//            ctrl.mAdapter.notifyDataSetChanged();
+            ctrl.mList.add("msg:"+ JSON.toJSONString(msg));
+            ctrl.mAdapter.notifyDataSetChanged();
             switch (msg.what) {
 
                 case UsbService.MESSAGE_FROM_SERIAL_PORT:
                     String data = (String) msg.obj;
 //                    mActivity.get().display.append(data);
-//                    ctrl.mList.add("data:"+ JSON.toJSONString(data));
-//                    ctrl.mAdapter.notifyDataSetChanged();
+                    ctrl.mList.add("data:"+ JSON.toJSONString(data));
+                    ctrl.mAdapter.notifyDataSetChanged();
                     mActivity.get().binding.display.append(data);
 
                     Toast.makeText(mActivity.get(),"DATA"+data,Toast.LENGTH_SHORT).show();
